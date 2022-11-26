@@ -9,7 +9,7 @@ jobs:
         id: selftest
 
         # Put your action repo here
-        uses: gijswobben/flake8-action@master
+        uses: gijswobben/flake8-action@main
 
       - name: Check outputs
         run: |
