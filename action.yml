@@ -1,0 +1,13 @@
+name: "Flake8-Action"
+description: "Flake8 linting with PR code annotations."
+author: "Gijs Wobben"
+inputs:
+  myInput:
+    description: "Input to use"
+    default: "world"
+outputs:
+  myOutput:
+    description: "Output from the action"
+runs:
+  using: "docker"
+  image: "Dockerfile"
