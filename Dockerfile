@@ -3,6 +3,6 @@ WORKDIR /app
 
 # We are installing a dependency here directly into our app source dir
 COPY ./requirements.txt ./requirements.txt
-RUN pip install --target=/app -r requirements.txt
+RUN pip install -r requirements.txt
 COPY ./ ./
 ENTRYPOINT [ "/app/entrypoint.sh" ]
