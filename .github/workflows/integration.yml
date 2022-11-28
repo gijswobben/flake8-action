@@ -7,7 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Self test
-        id: selftest
         uses: gijswobben/flake8-action@main
         with:
           flake8_config: |
@@ -17,4 +16,17 @@ jobs:
                 # See https://github.com/PyCQA/pycodestyle/issues/373
                 E203,
           strict: true
-          additional_packages: pep8-naming==0.13.2 flake8-annotations==2.9.1
+          additional_packages: pep8-naming==0.13.2 flake8-annotations==2.9.1 darglint==1.8.1
+
+      - uses: actions/checkout@master
+      - name: Bad code test
+        uses: gijswobben/flake8-action@main
+        continue-on-error: true
+        with:
+          flake8_config: |
+            [flake8]
+            filename = **/examples/incorrect_code.py
+          strict: true
+          additional_packages: pep8-naming==0.13.2 flake8-annotations==2.9.1 darglint==1.8.1
+      - name: Invert success and failure
+        run: if [[ ${{ steps.lint-incorrect.outcome }} == "failure" ]]; then exit 0; else exit 1; fi
