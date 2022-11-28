@@ -12,7 +12,7 @@ jobs:
         with:
           flake8_config: |
             [flake8]
-            exclude = examples/
+            exclude = examples/ tests/
             max-line-length = 88
             extend-ignore =
                 # See https://github.com/PyCQA/pycodestyle/issues/373
