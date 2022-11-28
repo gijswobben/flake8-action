@@ -19,5 +19,6 @@ jobs:
       - name: Run tests
         run: |
           echo "::group::Test coverage"
-          pytest --cov=main --cov-report term-missing --md-report-output=$GITHUB_STEP_SUMMARY
+          pytest --cov=main --cov-report term-missing --md-report-output=coverage-report.md
+          cat coverage-report.md >> $GITHUB_STEP_SUMMARY
           echo "::endgroup::"
