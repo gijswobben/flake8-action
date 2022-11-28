@@ -2,12 +2,22 @@ name: "Flake8-Action"
 description: "Flake8 linting with PR code annotations."
 author: "Gijs Wobben"
 inputs:
-  myInput:
-    description: "Input to use"
-    default: "world"
-outputs:
-  myOutput:
-    description: "Output from the action"
+  strict:
+    description: "If strict is True the pipeline will fail when a Flake8 violation is encountered."
+    default: "False"
+  strict-for:
+    description: "Specify individual codes to apply strict rules for."
+  not-strict_for:
+    description: "Specify individual codes to NOT apply strict rules for."
+  message-title:
+    description: "Custom title for the warnings/errors in the code annotations."
+    default: "Flake8 issue found"
+  flake8-output:
+    description: "If specified, don't run the Flake8 command but use the value of this input as the Flake8 content to parse."
+  additional-packages:
+    description: "If specified, install these packages (e.g. Flake8 plugins) before running the Flake8 command."
+  flake8-config:
+    description: "Flake8 configuration in .flake8 format"
 runs:
   using: "docker"
   image: "Dockerfile"
