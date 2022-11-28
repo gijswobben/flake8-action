@@ -1,7 +1,19 @@
-name: Integration Test
-"on": [push]
+name: Code quality
+
+# Run this workflow when...
+"on":
+  # ... there is a push to main (e.g. through a merge)
+  push:
+    branches: ["main"]
+
+  # .. a new PR is opened
+  pull_request:
+
+  # ... somebody triggers this workflow manually
+  workflow_dispatch:
 
 jobs:
+  # Test Flake8-Action using itself
   self:
     name: Test Flake8-Action
     runs-on: ubuntu-latest
@@ -20,11 +32,14 @@ jobs:
           strict: true
           additional_packages: pep8-naming==0.13.2 flake8-annotations==2.9.1 darglint==1.8.1 flake8-bugbear==22.10.27
 
+  # Test some examples in the examples/ directory
   cases:
-    name: Test cases
+    name: Test examples
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+
+      # Should fail
       - name: Bad code test
         id: test-bad-code
         uses: gijswobben/flake8-action@main
@@ -37,6 +52,7 @@ jobs:
       - name: Invert success and failure
         run: if [[ "${{ steps.test-bad-code.outcome }}" == "failure" ]]; then exit 0; else exit 1; fi
 
+      # Should not fail
       - uses: actions/checkout@master
       - name: Good code test
         uses: gijswobben/flake8-action@main
@@ -46,3 +62,24 @@ jobs:
             [flake8]
             filename = **/examples/correct_code.py
           strict: true
+
+  # Unittests with PyTest
+  unittests:
+    name: Unittests (PyTest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install test requirements
+        run: |
+          pip install -r requirements.txt
+          pip install pytest==7.2.0 pytest-cov==4.0.0
+      - name: Run tests
+        run: |
+          echo "::group::Test coverage"
+          pytest --cov=main --cov-report term-missing
+          echo "::endgroup::"
