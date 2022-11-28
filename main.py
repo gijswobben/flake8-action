@@ -118,7 +118,8 @@ def main(
     for message_level, lines in output_lines.items():
         if len(lines) > 0:
             print(f"::group::The following {message_level}s were found")
-            print("\n".join(lines))
+            for message in lines:
+                print(message)
             print("::endgroup::")
 
     if should_raise:
