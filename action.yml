@@ -1,4 +1,4 @@
-name: "Flake8-Action"
+name: "Flake8-Annotate-Action"
 description: "Flake8 linting with PR code annotations."
 author: "Gijs Wobben"
 

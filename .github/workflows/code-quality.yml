@@ -13,9 +13,9 @@ name: Code quality
   workflow_dispatch:
 
 jobs:
-  # Test Flake8-Action using itself
+  # Test Flake8-Annotate-Action using itself
   self:
-    name: Test Flake8-Action
+    name: Test Flake8-Annotate-Action
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master

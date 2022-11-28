@@ -1,6 +1,6 @@
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A0A1E64QX)
 
-# Flake8-Action
+# Flake8-Annotate-Action
 This Github Action makes it possible to run Flake8 (optionally with plugins) and use the output to annotate code in pull requests.
 
 ![Example of Flake8 annotations in a PR](assets/screenshot.png)
