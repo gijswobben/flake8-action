@@ -1,5 +1,6 @@
 name: Integration Test
-on: [push]
+"on": [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -7,10 +8,11 @@ jobs:
       - uses: actions/checkout@master
       - name: Self test
         id: selftest
-
-        # Put your action repo here
         uses: gijswobben/flake8-action@main
-
-      - name: Check outputs
-        run: |
-          test "${{ steps.selftest.outputs.myOutput }}" == "Hello world"
+        with:
+          flake8-config: |
+            [flake8]
+            max-line-length = 88
+            extend-ignore =
+                # See https://github.com/PyCQA/pycodestyle/issues/373
+                E203,
