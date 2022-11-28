@@ -35,7 +35,7 @@ jobs:
             filename = **/examples/incorrect_code.py
           strict: true
       - name: Invert success and failure
-        run: if [[ ${{ steps.test-bad-code.outcome }} == "failure" ]]; then exit 0; else exit 1; fi
+        run: if [[ "${{ steps.test-bad-code.outcome }}" == "failure" ]]; then exit 0; else exit 1; fi
 
       - uses: actions/checkout@master
       - name: Good code test
