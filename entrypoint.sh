@@ -17,7 +17,7 @@ then
 fi
 
 # Generate Flake8 output if there isn't any
-if [ -n "$FLAKE8_OUTPUT" ]
+if [ -z "$FLAKE8_OUTPUT" ]
 then
     flake8 --exit-zero > flake8_results.txt
 fi
