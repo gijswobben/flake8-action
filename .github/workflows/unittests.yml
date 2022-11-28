@@ -15,10 +15,9 @@ jobs:
       - name: Install test requirements
         run: |
           pip install -r requirements.txt
-          pip install pytest==7.2.0 pytest-cov==4.0.0 pytest-md-report==0.3.0
+          pip install pytest==7.2.0 pytest-cov==4.0.0
       - name: Run tests
         run: |
           echo "::group::Test coverage"
-          pytest --cov=main --cov-report term-missing --md-report-output=coverage-report.md
-          cat coverage-report.md >> $GITHUB_STEP_SUMMARY
+          pytest --cov=main --cov-report term-missing
           echo "::endgroup::"
