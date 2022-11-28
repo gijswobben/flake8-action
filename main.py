@@ -57,7 +57,7 @@ def main(
     not_strict_for: list[str],
     message_title: str,
     flake8_output: str | None,
-):
+) -> None:
 
     # Read the Flake8 results
     if flake8_output is None:
