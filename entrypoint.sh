@@ -10,10 +10,10 @@ cat .flake8
 echo "::endgroup::"
 
 # Install additional package (if applicable)
-if [ -n "$ADDITIONAL_PACKAGES" ]
+if [ -n "$INPUT_ADDITIONAL_PACKAGES" ]
 then
     echo "::group::Additional packages"
-    pip install -U $ADDITIONAL_PACKAGES
+    pip install -U $INPUT_ADDITIONAL_PACKAGES
     echo "::endgroup::"
 fi
 
