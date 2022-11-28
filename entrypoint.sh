@@ -6,6 +6,10 @@ then
     echo -e "$FLAKE8_CONFIG" > .flake8
 fi
 
+echo "::group::Using Flake8 config"
+cat .flake8
+echo "::endgroup::"
+
 # Install additional package (if applicable)
 if [ -n "$ADDITIONAL_PACKAGES" ]
 then
