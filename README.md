@@ -1,6 +1,8 @@
 # Flake8-Action
 This Github Action makes it possible to run Flake8 (optionally with plugins) and use the output to annotate code in pull requests.
 
+![Example of Flake8 annotations in a PR](docs/assets/screenshot.png)
+
 ## Usage
 You can use `uses: gijswobben/flake8-action@main` in a Github Actions workflow to check your Python code with Flake8. Additional options can be configured in the `with:` section (see examples for details).
 
