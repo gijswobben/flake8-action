@@ -16,7 +16,7 @@ inputs:
     description: "If specified, don't run the Flake8 command but use the value of this input as the Flake8 content to parse."
   additional-packages:
     description: "If specified, install these packages (e.g. Flake8 plugins) before running the Flake8 command."
-  flake8-config:
+  flake8_config:
     description: "Flake8 configuration in .flake8 format"
 runs:
   using: "docker"

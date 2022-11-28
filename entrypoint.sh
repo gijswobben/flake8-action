@@ -1,9 +1,9 @@
 #!/bin/bash -l
 
 # Put the config in a file
-if [ -n "$FLAKE8_CONFIG" ]
+if [ -n "$INPUT_FLAKE8_CONFIG" ]
 then
-    echo -e "$FLAKE8_CONFIG" > .flake8
+    echo -e "$INPUT_FLAKE8_CONFIG" > .flake8
 fi
 
 echo "::group::Using Flake8 config"

@@ -10,7 +10,7 @@ jobs:
         id: selftest
         uses: gijswobben/flake8-action@main
         with:
-          flake8-config: |
+          flake8_config: |
             [flake8]
             max-line-length = 88
             extend-ignore =
