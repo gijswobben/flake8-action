@@ -6,7 +6,7 @@ then
     echo -e "$INPUT_FLAKE8_CONFIG" > .flake8
 fi
 
-echo "::group::Using Flake8 config"
+echo "::group::Flake8 config"
 cat .flake8
 echo "::endgroup::"
 
