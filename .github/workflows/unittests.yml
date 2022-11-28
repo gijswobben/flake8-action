@@ -1,0 +1,21 @@
+name: Unittests
+"on": [push]
+
+jobs:
+  unittests:
+    name: Unittests (PyTest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install test requirements
+        run: pip install pytest==7.2.0 pytest-cov==4.0.0 pytest-md-report==1.3.0
+      - name: Run tests
+        run: |
+          echo "::group::Test coverage"
+          pytest --cov=main --cov-report term-missing --md-report-output=$GITHUB_STEP_SUMMARY
+          echo "::endgroup::"
