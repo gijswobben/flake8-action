@@ -2,7 +2,8 @@ name: Integration Test
 "on": [push]
 
 jobs:
-  build:
+  self:
+    name: Test Flake8-Action
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -17,8 +18,12 @@ jobs:
                 # See https://github.com/PyCQA/pycodestyle/issues/373
                 E203,
           strict: true
-          additional_packages: pep8-naming==0.13.2 flake8-annotations==2.9.1 darglint==1.8.1
+          additional_packages: pep8-naming==0.13.2 flake8-annotations==2.9.1 darglint==1.8.1 flake8-bugbear==22.10.27
 
+  cases:
+    name: Test cases
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@master
       - name: Bad code test
         uses: gijswobben/flake8-action@main
@@ -28,6 +33,15 @@ jobs:
             [flake8]
             filename = **/examples/incorrect_code.py
           strict: true
-          additional_packages: pep8-naming==0.13.2 flake8-annotations==2.9.1 darglint==1.8.1
       - name: Invert success and failure
         run: if [[ ${{ steps.lint-incorrect.outcome }} == "failure" ]]; then exit 0; else exit 1; fi
+
+      - uses: actions/checkout@master
+      - name: Good code test
+        uses: gijswobben/flake8-action@main
+        continue-on-error: true
+        with:
+          flake8_config: |
+            [flake8]
+            filename = **/examples/correct_code.py
+          strict: true
