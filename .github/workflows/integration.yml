@@ -17,3 +17,4 @@ jobs:
                 # See https://github.com/PyCQA/pycodestyle/issues/373
                 E203,
           strict: true
+          additional_package: pep8-naming==0.13.2 flake8-annotations==2.9.1
