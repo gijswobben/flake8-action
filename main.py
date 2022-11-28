@@ -126,4 +126,4 @@ def main(
 
 
 if __name__ == "__main__":
-    main(auto_envvar_prefix="FLAKE8_ACTION")
+    main(auto_envvar_prefix="INPUT")
